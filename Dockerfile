@@ -7,9 +7,11 @@ RUN bash /APP/centos8.prereqs.sh
 
 FROM stage1 as stage2
 WORKDIR /APP
+RUN id -a
 USER nobody
-RUN /usr/bin/scl enable gcc-toolset-10 make --debug=bj
-RUN /usr/bin/scl enable gcc-toolset-10 make --debug=bj test
+RUN id -a
+RUN /usr/bin/scl enable gcc-toolset-10 'make --debug=bj'
+RUN /usr/bin/scl enable gcc-toolset-10 'make --debug=bj test'
 
 FROM stage2
 WORKDIR /APP/build.small
